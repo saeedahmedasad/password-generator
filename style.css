@@ -70,14 +70,26 @@ body{
 .generated:hover{
     background: rgba(40, 50, 80, 0.5);
 }
+.generated span{
+    transform: translateX(-10px);
+    animation: translate 1s ease-in-out;
+}
+@keyframes translate {
+    from{
+        transform: translateX(-10px);
+    }
+    to{
+        transform: translateX(0px);
+    }
+}
 .easy{
-    background: green;
+    background: rgba(0, 128, 0, 0.253);
 }
 .medium{
-    background: yellow;
+    background: rgba(255, 255, 0, 0.219);
 }
 .hard{
-    background: red;
+    background: rgba(255, 0, 0, 0.247);
 }
 .generate{
     width: 200px;
