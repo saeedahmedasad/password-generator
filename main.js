@@ -1,10 +1,13 @@
 const strengthEls = document.querySelectorAll(".inner_box");
 const passwordDisplayEl = document.querySelector(".generated");
 const generateBtn = document.querySelector(".generate");
-
+const copyEl = document.querySelector(".copy")
+let copy = false
 let passwordStrength = "easy";
+let password = ""
 strengthEls.forEach((el) => {
   el.addEventListener("click", () => {
+    copy = false
     removeActiveClasses();
     passwordStrength = el.innerHTML.toLowerCase();
     el.classList.add(`${el.innerHTML.toLocaleLowerCase()}`);
@@ -14,12 +17,13 @@ strengthEls.forEach((el) => {
 function removeActiveClasses() {
   passwordDisplayEl.setAttribute("class", "generated");
   strengthEls.forEach((el) => {
-    passwordDisplayEl.innerHTML = "Click Generate"
+    passwordDisplayEl.innerHTML = `Click Generate <span class="copy">Copy</span>`
     el.setAttribute("class", "inner_box");
   });
 }
 generateBtn.addEventListener("click", createPassword);
 function createPassword() {
+  password = ""
   if (passwordStrength == "easy") {
     let char = "abcdefghijklmnopqrstuvwxyz"
     generatePassword(char)
@@ -33,7 +37,6 @@ function createPassword() {
 
 }
 function generatePassword(char){
-  let password = ""
   function randomNumberGenerator(){
     let random = Math.floor(Math.random()*char.length)
     return random
@@ -42,5 +45,23 @@ function generatePassword(char){
     let randomIndex = randomNumberGenerator();
     password += char[randomIndex]
   }
-  passwordDisplayEl.innerHTML = password
+  copy = true;
+  passwordDisplayEl.innerHTML = `${password} <span class="copy">Copy</span>`
 }
+passwordDisplayEl.addEventListener("mousemove", ()=>{
+  if(copy){
+    copyEl.classList.add("copy_hover")
+  }else{
+    copyEl.classList.remove("copy_hover")
+  }
+})
+passwordDisplayEl.addEventListener("mouseout", ()=>{
+    if(copy){
+      copyEl.classList.remove("copy_hover")
+      copyEl.innerHTML = "Click to Copy"
+    }
+})
+passwordDisplayEl.addEventListener("click", ()=>{
+  copyEl.innerHTML = "Copied"
+  navigator.clipboard.writeText(password);
+})

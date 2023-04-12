@@ -66,9 +66,39 @@ body{
     font-size: 18px;
     letter-spacing: 0.155em;
     padding: 5px 0px;
+    cursor: pointer;
 }
 .generated:hover{
     background: rgba(40, 50, 80, 0.5);
+}
+.generated_div{
+    position: relative;
+    overflow: hidden;
+}
+.copy{
+    position: absolute;
+    left: 0;
+    top: 0%;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: red;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.151);
+    background: #232F4D;
+    transform: scaleX(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+}
+.copy_hover{
+    top: 0;
+    opacity: 1;
+    transform: scaleX(1)
+
 }
 .easy{
     background: rgba(0, 128, 0, 0.253);
