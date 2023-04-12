@@ -41,7 +41,7 @@ function generatePassword(char){
     let random = Math.floor(Math.random()*char.length)
     return random
   }
-  for(let i = 0; i < 10; i++){
+  for(let i = 0; i < 8; i++){
     let randomIndex = randomNumberGenerator();
     password += char[randomIndex]
   }
